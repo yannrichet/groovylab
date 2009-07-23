@@ -1,0 +1,6 @@
+import static org.math.array.Matrix.*
+import static org.math.plot.Plot.*
+
+def A = rand(10,3)
+println A
+plot("A",A,"SCATTER")
