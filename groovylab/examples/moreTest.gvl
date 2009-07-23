@@ -1,0 +1,20 @@
+import static org.math.array.Matrix.*
+import static org.math.plot.Plot.*
+
+def A = rand(10,3) 		// random Matrix of 10 rows and 3 columns
+def B = fill(10,3,1.0) 	// one Matrix of 10 rows and 3 columns
+def C = A + B 			// support for matrix addition with "+" or "-"
+def D = A - 2.0			// support for number addition with "+" or "-"
+def E = A * B			// support for matrix multiplication or division
+def F = rand(3,3)	
+def G = F**(-1)			// support for matrix power (with integers only)
+
+println A				// display Matrix content
+
+plot("A",A,"SCATTER")	// plot Matrix values as ScatterPlot
+
+def M = rand(5,5) + id(5) //Eigenvalues decomposition
+println "M=\n" + M
+println "V=\n" + V(M)
+println "D=\n" + D(M)
+println "M~\n" + (V(M) * D(M) * V(M)**(-1))
