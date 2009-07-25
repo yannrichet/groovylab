@@ -1,55 +1,61 @@
+
 <project name="groovylab" default="dist" basedir=".">
-	<description> 
+    <description>
         jmathio, java math I/O library
     </description>
 	<!-- set global properties for this build -->
-	<property name="src" location="src" />
-	<property name="build" location="build" />
-	<property name="dist" location="dist" />
-	<property name="lib" location="lib" />
+    <property name="src" location="src" />
+    <property name="build" location="build" />
+    <property name="dist" location="dist" />
+    <property name="lib" location="lib" />
 		
-	<target name="init">
+    <target name="init">
 		<!-- Create the time stamp -->
-		<tstamp />
+        <tstamp />
 		<!-- Create the build directory structure used by compile -->
-		<mkdir dir="${build}" />
-	</target>
+        <mkdir dir="${build}" />
+    </target>
 
-	<target name="resource">
-		<copy todir="${build}">
-			<fileset dir="${src}">
-				<include name="**/*.java" />
-			</fileset>
-		</copy>
-	</target>
+    <target name="resource">
+        <copy todir="${build}">
+            <fileset dir="${src}">
+                <include name="**/*.java" />
+            </fileset>
+        </copy>
+    </target>
 	
-	<target name="compile" depends="init" description="compile the source ">
+    <target name="compile" depends="init" description="compile the source ">
 		<!-- Compile the java code from ${src} into ${build} -->
-		<javac srcdir="${src}" destdir="${build}"  source="1.5" target="1.5"/>
-	</target>
+        <javac srcdir="${src}" destdir="${build}"  source="1.5" target="1.5"/>
+    </target>
 
-	<target name="dist" depends="compile,resource" description="generate the distribution">
+    <target name="dist" depends="compile,resource" description="generate the distribution">
 		<!-- Create the distribution directory -->
-		<mkdir dir="${dist}/" />
-		<jar jarfile="${dist}/${ant.project.name}.jar" basedir="${build}" />
-	</target>
+        <mkdir dir="${dist}/" />
+        <jar jarfile="${dist}/${ant.project.name}.jar" basedir="${src}" />
+    </target>
 	
-	<target name="clean" description="clean up">
+    <target name="clean" description="clean up">
 		<!-- Delete the ${build} and ${dist} directory trees -->
-		<delete dir="${build}" />
-		<delete dir="${dist}" includes="*.jar"/>
-	</target>
+        <delete dir="${build}" />
+        <delete dir="${dist}" includes="*.jar"/>
+    </target>
 	
-	<target name="doc">
-	<taskdef name="doxygen" classname="org.doxygen.tools.DoxygenTask"
-		            classpath="${user.home}/.eclipse/ant_doxygen.jar" />
-		<doxygen>
-		    <property name="INPUT" value="${src}" />
-		    <property name="RECURSIVE" value="yes" />
-		    <property name="GENERATE_LATEX" value="false" />
-		    <property name="PROJECT_NAME" value="${ant.project.name}" />
-		</doxygen>
-	</target>
-	
-	
+    <target name="doc">
+        <taskdef name="groovydoc" classname="org.codehaus.groovy.ant.Groovydoc"  classpath="groovy-all.jar"/>
+        <groovydoc
+    destdir="doc"
+    sourcepath="${src}"
+    packagenames="**.*"
+    use="true"
+    private="false">
+            <link packages="java.,org.xml.,javax.,org.xml." href="http://java.sun.com/j2se/1.5.0/docs/api"/>
+            <link packages="org.apache.ant.,org.apache.tools.ant." href="http://www.dpml.net/api/ant/1.7.0"/>
+            <link packages="org.junit.,junit.framework." href="http://junit.sourceforge.net/junit3.8.1/javadoc/"/>
+            <link packages="groovy.,org.codehaus.groovy." href="http://groovy.codehaus.org/api/"/>
+        </groovydoc>
+    </target>
+
+
+
 </project>
