@@ -42,7 +42,7 @@
     </target>
 	
     <target name="doc">
-        <taskdef name="groovydoc" classname="org.codehaus.groovy.ant.Groovydoc"  classpath="groovy-all.jar"/>
+        <taskdef name="groovydoc" classname="org.codehaus.groovy.ant.Groovydoc"  classpath="groovy-all.jar"/> 
         <groovydoc
     destdir="doc"
     sourcepath="${src}"
