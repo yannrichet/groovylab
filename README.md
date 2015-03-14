@@ -158,9 +158,9 @@ Following static transformation methods are available:
                     rowsMatrix >> Matrix    // appends rowsMatrix to Matrix at last position (i.e. add last row)
                     columnsMatrix >>> Matrix        // appends columnsMatrix to Matrix at last position (i.e. add last column)
                     Matrix << rowsMatrix    // appends rowsMatrix to Matrix at first position (i.e. add first row)
-```groovy
-Following static statistic sample methods are available:
 ```
+Following static statistic sample methods are available:
+```groovy
                     mean(Matrix)
                     variance(Matrix)
                     covariance(Matrix,Matrix)
