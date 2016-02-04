@@ -166,3 +166,5 @@ Following static statistic sample methods are available:
                     covariance(Matrix,Matrix)
                     correlation(Matrix,Matrix)
 ```
+
+![Analytics](https://ga-beacon.appspot.com/UA-109580-20/groovylab)
